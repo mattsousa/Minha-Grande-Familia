@@ -3,4 +3,33 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/main_txw_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_relative_name_ex" />
+
+    <TextView
+        android:id="@+id/main_txw_parentage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_relative_parentage_ex" />
+
+    <TextView
+        android:id="@+id/main_txw_birthday"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_relative_birthday_ex" />
+
+    <Button
+        android:id="@+id/main_btn_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_relative_remove" />
+
+    <Button
+        android:id="@+id/main_btn_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/main_relative_edit" />
 </LinearLayout>

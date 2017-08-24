@@ -3,4 +3,54 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/nrelative_txw_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:text="@string/nrelatives_phone" />
+
+    <EditText
+        android:id="@+id/nrelatives_edt_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/nrelatives_number_phone"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/nrelatives_txw_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/nrelatives_email" />
+
+    <EditText
+        android:id="@+id/nrelatives_edt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/nrelatives_email_ex"
+        android:inputType="textEmailAddress" />
+
+    <Switch
+        android:id="@+id/nrelatives_swc_married"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="2dp"
+        android:checked="false"
+        android:text="@string/nrelatives_married"
+        android:textOff="@string/nrelatives_no"
+        android:textOn="@string/nrelatives_yes" />
+
+    <Switch
+        android:id="@+id/nrelatives_swc_lives"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/nrelatives_lives_u"
+        android:textOff="@string/nrelatives_no"
+        android:textOn="@string/nrelatives_yes" />
+
 </LinearLayout>

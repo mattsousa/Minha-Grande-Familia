@@ -1,4 +1,36 @@
 <resources>
     <string name="app_name">Minha Grande Familia!</string>
     <string name="action_settings">Settings</string>
+    <string name="main_add_relatives">Adicione familiares</string>
+    <string name="main_tree_gene">Arvore genealogica</string>
+    <string name="main_menu_about">About</string>
+    <string name="main_menu_export">Export</string>
+    <string name="nrelative_name">Name</string>
+    <string name="nrelatives_name_ex">Ex: Paul Marcus</string>
+    <string name="nrelatives_parentage">Parentage</string>
+    <string name="nrelatives_birthday">Birthday</string>
+    <string name="nrelatives_birthday_ex">MM.DD.YYYY</string>
+    <string name="nrelatives_xinfo">Extra informations</string>
+    <string name="nrelatives_xinfo_ex">Phone, email, etc</string>
+    <string name="nrelatives_save">Save relative</string>
+    <string name="nrelatives_photo_desc">Relative Photo</string>
+    <string name="nrelatives_phone">Phone</string>
+    <string name="nrelatives_number_phone">(33) 3118 5163</string>
+    <string name="nrelatives_email">Email</string>
+    <string name="nrelatives_email_ex">Ex: foo@bar.com</string>
+    <string name="nrelatives_lives_u">Lives with you?</string>
+    <string name="nrelatives_yes">Yes</string>
+    <string name="nrelatives_no">No</string>
+    <string name="nrelatives_married">Is married?</string>
+    <string name="main_relative_name_ex">Mr mxyzptlk</string>
+    <string name="main_relative_parentage_ex">He(She) is your uncle</string>
+    <string name="main_relative_birthday_ex">His birthday will be in 01.22, monday</string>
+    <string name="main_relative_remove">Remove relative</string>
+    <string name="main_relative_edit">Edit Relative</string>
+    <string name="load_json_paste">{ }</string>
+    <string name="load_paste_hint">Paste the content on your .fmly file here</string>
+    <string name="load_apply">Apply</string>
+    <string name="birthday_birthdays">Birthdays</string>
+    <string name="export_hint">The file will be generated on FamilyBig directory</string>
+    <string name="export_export">Export</string>
 </resources>

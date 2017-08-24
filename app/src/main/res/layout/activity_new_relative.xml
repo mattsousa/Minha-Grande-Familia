@@ -6,4 +6,107 @@
     android:layout_height="match_parent"
     tools:context="br.com.mattsousa.minhagrandefamilia.NewRelativeActivity">
 
+    <ImageView
+        android:id="@+id/nrelative_imvw_photo"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@color/colorPrimary"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:contentDescription="@string/nrelatives_photo_desc" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="2dp"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="@+id/nrelative_imvw_photo"
+        app:layout_constraintRight_toRightOf="@+id/nrelative_imvw_photo"
+        app:layout_constraintTop_toBottomOf="@+id/nrelative_imvw_photo">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/nrelative_name" />
+
+        <EditText
+            android:id="@+id/nrelative_edt_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/nrelatives_name_ex"
+            android:inputType="textPersonName" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/nrelatives_parentage" />
+
+        <Spinner
+            android:id="@+id/nrelative_spn_parentage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:spinnerMode="dialog" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/nrelatives_birthday" />
+
+        <Button
+            android:id="@+id/nrelative_btn_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nrelatives_birthday_ex" />
+
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
+            android:text="@string/nrelatives_xinfo"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/nrelative_btn_xinfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nrelatives_xinfo_ex"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/nrelative_btn_save"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/nrelatives_save"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 </android.support.constraint.ConstraintLayout>
