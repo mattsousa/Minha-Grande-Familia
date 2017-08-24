@@ -12,9 +12,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
@@ -24,6 +22,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".NewUserActivity" />
+        <activity android:name=".TreeActivity" />
+        <activity android:name=".NewRelativeActivity" />
+        <activity android:name=".LoadActivity" />
+        <activity android:name=".AboutActivity" />
+        <activity android:name=".ExportActivity"></activity>
     </application>
 
 </manifest>
