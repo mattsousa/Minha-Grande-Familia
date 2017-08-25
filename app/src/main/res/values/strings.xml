@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Minha Grande Familia!</string>
-    <string name="action_settings">Settings</string>
     <string name="main_add_relatives">Adicione familiares</string>
     <string name="main_tree_gene">Arvore genealogica</string>
     <string name="main_menu_about">About</string>
@@ -33,4 +32,19 @@
     <string name="birthday_birthdays">Birthdays</string>
     <string name="export_hint">The file will be generated on FamilyBig directory</string>
     <string name="export_export">Export</string>
+    <string name="nuser_name">Type your name</string>
+    <string name="nuser_gender_birthday">Now, insert your gender and birthday</string>
+    <string name="nuser_email_nd_confirm">At last, type your email and confirm it</string>
+    <string name="nuser_name_ex">Ex: Richard Marcus</string>
+    <string name="nuser_male">Male</string>
+    <string name="nuser_female">Female</string>
+    <string name="nuser_birthday">Select your birthday</string>
+    <string name="nuser_email_ex">Ex:foo@bar.com</string>
+    <string name="nuser_email_confirm">Confirm your email here</string>
+    <string name="nuser_wellcome">Wellcome</string>
+    <string name="nuser_empty_name">Please, type your name</string>
+    <string name="global_treatment_male">Mr.</string>
+    <string name="global_treatment_female">Mrs.</string>
+    <string name="login_create">Create new Data</string>
+    <string name="login_recover">Recover data</string>
 </resources>

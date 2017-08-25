@@ -1,4 +1,4 @@
-package br.com.mattsousa.minhagrandefamilia
+package br.com.mattsousa.minhagrandefamilia.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Spinner
+import br.com.mattsousa.minhagrandefamilia.R
 
 class NewRelativeActivity : AppCompatActivity() {
     val imvwPhoto = findViewById(R.id.nrelative_imvw_photo) as ImageView

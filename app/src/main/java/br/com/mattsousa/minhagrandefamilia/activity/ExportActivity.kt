@@ -1,7 +1,8 @@
-package br.com.mattsousa.minhagrandefamilia
+package br.com.mattsousa.minhagrandefamilia.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import br.com.mattsousa.minhagrandefamilia.R
 
 class ExportActivity : AppCompatActivity() {
 

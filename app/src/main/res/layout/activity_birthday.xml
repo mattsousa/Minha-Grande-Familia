@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="br.com.mattsousa.minhagrandefamilia.BirthdayActivity">
+    tools:context="br.com.mattsousa.minhagrandefamilia.activity.BirthdayActivity">
 
     <TextView
         android:id="@+id/textView8"

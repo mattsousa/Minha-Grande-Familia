@@ -1,9 +1,10 @@
-package br.com.mattsousa.minhagrandefamilia
+package br.com.mattsousa.minhagrandefamilia.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import br.com.mattsousa.minhagrandefamilia.R
 
 class LoadActivity : AppCompatActivity() {
 
