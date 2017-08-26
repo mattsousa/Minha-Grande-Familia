@@ -8,7 +8,7 @@
     <string name="nrelatives_name_ex">Ex: Paul Marcus</string>
     <string name="nrelatives_parentage">Parentage</string>
     <string name="nrelatives_birthday">Birthday</string>
-    <string name="nrelatives_birthday_ex">MM.DD.YYYY</string>
+    <string name="nrelatives_birthday_ex">Select your relative\'s birthday</string>
     <string name="nrelatives_xinfo">Extra informations</string>
     <string name="nrelatives_xinfo_ex">Phone, email, etc</string>
     <string name="nrelatives_save">Save relative</string>
@@ -21,6 +21,7 @@
     <string name="nrelatives_yes">Yes</string>
     <string name="nrelatives_no">No</string>
     <string name="nrelatives_married">Is married?</string>
+    <string name="nrelatives_no_choose">Select a parentage</string>
     <string name="main_relative_name_ex">Mr mxyzptlk</string>
     <string name="main_relative_parentage_ex">He(She) is your uncle</string>
     <string name="main_relative_birthday_ex">His birthday will be in 01.22, monday</string>
@@ -43,8 +44,47 @@
     <string name="nuser_email_confirm">Confirm your email here</string>
     <string name="nuser_wellcome">Wellcome</string>
     <string name="nuser_empty_name">Please, type your name</string>
+    <string name="nuser_empty_email">Please, type your email</string>
+    <string name="nuser_empty_birthday">Please, insert your birthday</string>
+    <string name="nuser_error_email">Emails do not match!</string>
     <string name="global_treatment_male">Mr.</string>
     <string name="global_treatment_female">Mrs.</string>
+    <string name="global_kinship_me">Me</string>
+    <string name="global_kinship_son">Son</string>
+    <string name="global_kinship_daughter">Daugther</string>
+    <string name="global_kinship_father">Father</string>
+    <string name="global_kinship_mother">Mother</string>
+    <string name="global_kinship_sister">Sister</string>
+    <string name="global_kinship_brother">Brother</string>
+    <string name="global_kinship_sibling">Sibling</string>
+    <string name="global_kinship_cousin">Cousin</string>
+    <string name="global_kinship_uncle">Uncle</string>
+    <string name="global_kinship_aunt">Aunt</string>
+    <string name="global_kinship_grandfather">Grand Father</string>
+    <string name="global_kinship_grandmother">Grand Mother</string>
+    <string name="global_kinship_grandson">Grand Son</string>
+    <string name="global_kinship_grandaughter">Grand Daughter</string>
+    <string name="global_ok">OK</string>
+    <string name="global_cancel">Cancel</string>
+    <string name="global_birthday_dialog">Choose your birthday</string>
+    <string name="nrelatives_empty_fields">Fill up your informations</string>
     <string name="login_create">Create new Data</string>
     <string name="login_recover">Recover data</string>
+
+    <string-array name="nrelative_kinship_spn">
+        <item>@string/global_kinship_son</item>
+        <item>@string/global_kinship_daughter</item>
+        <item>@string/global_kinship_father</item>
+        <item>@string/global_kinship_mother</item>
+        <item>@string/global_kinship_sister</item>
+        <item>@string/global_kinship_brother</item>
+        <item>@string/global_kinship_uncle</item>
+        <item>@string/global_kinship_aunt</item>
+        <item>@string/global_kinship_grandfather</item>
+        <item>@string/global_kinship_grandmother</item>
+        <item>@string/global_kinship_grandson</item>
+        <item>@string/global_kinship_grandaughter</item>
+        <item>@string/global_kinship_cousin</item>
+        <item>@string/global_kinship_sibling</item>
+    </string-array>
 </resources>
