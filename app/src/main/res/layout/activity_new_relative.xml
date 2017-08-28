@@ -96,6 +96,7 @@
                     android:layout_marginBottom="4dp"
                     android:layout_marginTop="2dp"
                     android:text="@string/nrelatives_xinfo"
+                    android:visibility="gone"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp" />
 
@@ -104,6 +105,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/nrelatives_xinfo_ex"
+                    android:visibility="gone"
                     tools:layout_editor_absoluteX="8dp"
                     tools:layout_editor_absoluteY="0dp" />
             </LinearLayout>
