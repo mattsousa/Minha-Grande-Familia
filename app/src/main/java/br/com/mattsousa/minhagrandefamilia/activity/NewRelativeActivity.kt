@@ -112,20 +112,27 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                         R.string.nuser_empty_birthday, Toast.LENGTH_SHORT).show()
             }
         }else{
-            relative = Relative(sex!!, edtName!!.text.toString(),
-                    SimpleDateFormat(Relative.DATE_FORMAT).format(date),kinship)
-            relative!!.photo = photo
-            if(relative != null){
-                RelativeDAO.removeById(relative!!.id)
+            if(intent.getBooleanExtra("newUser",true)){
+                relative = Relative(sex!!, edtName!!.text.toString(),
+                        SimpleDateFormat(Relative.DATE_FORMAT).format(date),kinship)
+                relative!!.photo = photo
+                RelativeDAO.insert(relative)
+
             }
-            RelativeDAO.insert(relative)
+            else{
+                relative!!.name = edtName!!.text.toString()
+                relative!!.parentage = kinship
+                relative!!.birthday = SimpleDateFormat(Relative.DATE_FORMAT).format(date)
+                RelativeDAO.alterUserById(relative!!.id, relative)
+            }
             onBackPressed()
+
         }
     }
 
     private fun spnInsertValues() {
         val adapter : ArrayAdapter<CharSequence> = ArrayAdapter.createFromResource(
-                applicationContext,R.array.nrelative_kinship_spn,
+                this,R.array.nrelative_kinship_spn,
                 android.R.layout.simple_spinner_item)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spnParentage!!.adapter = adapter
@@ -198,7 +205,7 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     private fun birthClick(){
         val builder = AlertDialog.Builder(this)
-        val datePicker = DatePicker(applicationContext)
+        val datePicker = DatePicker(this)
         if(date != null){
             datePicker.updateDate(date.year, date.month, date.day)
         }
@@ -240,8 +247,14 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                                 Toast.LENGTH_LONG).show()
                         xinfoClick()
                     }else{
-                        relative = Relative(sex!!,edtName!!.text.toString(),
-                                btnBirthday!!.text.toString(),kinship)
+                        if(intent.getBooleanExtra("newUser",false)){
+                            relative = Relative(sex!!,edtName!!.text.toString(),
+                                    btnBirthday!!.text.toString(),kinship)
+                        }
+                        else{
+                            relative!!.phone = edtPhone.text.toString()
+                            relative!!.email = edtEmail.text.toString()
+                        }
                         relative!!.isMarried = swcMarried.isChecked
                         relative!!.isLivesUser = swcLives.isChecked
                     }

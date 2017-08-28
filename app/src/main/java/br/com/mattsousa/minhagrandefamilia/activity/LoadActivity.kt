@@ -22,55 +22,56 @@ import java.io.File
 class LoadActivity : AppCompatActivity() {
     var btnApply : Button? = null
 
+    private val PERMISSION = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_load)
         btnApply = findViewById(R.id.load_btn_apply) as Button
 
         btnApply!!.setOnClickListener({
-            val file = File(Environment.getExternalStorageDirectory(), "export.mgf")
-
-            val gson = Gson()
-            var gsonString = StringBuilder()
-
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
+                val permissions : Array<String> = Array(2, {i -> when(i){
+                    0->Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    else ->Manifest.permission.READ_EXTERNAL_STORAGE
+                }})
+                ActivityCompat.requestPermissions(this, permissions, 1)
+            }
+        })
+    }
 
-                // Should we show an explanation?
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
+    override fun onRequestPermissionsResult(requestCode: Int,
+                                            permissions: Array<out String>,
+                                            grantResults: IntArray) {
+        when(requestCode){
+            PERMISSION-> {
+                if (grantResults.isNotEmpty().and(grantResults[0] ==
+                        PackageManager.PERMISSION_GRANTED)) {
+                }
+                if (grantResults.isNotEmpty().and(grantResults[1] ==
+                        PackageManager.PERMISSION_GRANTED)) {
+                    val file = File(Environment.getExternalStorageDirectory(), "export.mgf")
+                    val gson = Gson()
+                    var gsonString = StringBuilder()
 
-                    // Show an expanation to the user *asynchronously* -- don't block
-                    // this thread waiting for the user's response! After the user
-                    // sees the explanation, try again to request the permission.
+                    for(buffer in file.readLines()){
+                        gsonString.append(buffer)
+                    }
 
-                } else {
+                    val user = gson.fromJson(gsonString.toString(), User::class.java) as User
 
-                    val permissions : Array<String> = Array(1, {i -> when(i){
-                        0->Manifest.permission.READ_CONTACTS
-                        else ->""
-                    }})
-                    ActivityCompat.requestPermissions(this, permissions,
-                            1)
+                    PersonDAO.insert(user, true)
+                    for(item in user.relatives){
+                        RelativeDAO.insert(item)
+                    }
 
+                    Singleton.setUser(user)
+
+                    startActivity(Intent(applicationContext, MainActivity::class.java))
                 }
             }
-
-            for(buffer in file.readLines()){
-                gsonString.append(buffer)
-            }
-
-            val user = gson.fromJson(gsonString.toString(), User::class.java) as User
-
-            PersonDAO.insert(user, true)
-            for(item in user.relatives){
-                RelativeDAO.insert(item)
-            }
-
-            Singleton.setUser(user)
-
-            startActivity(Intent(applicationContext, MainActivity::class.java))
-        })
+        }
     }
 }

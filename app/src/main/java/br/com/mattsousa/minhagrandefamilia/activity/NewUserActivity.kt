@@ -130,7 +130,7 @@ class NewUserActivity : AppCompatActivity() {
 
     private fun birthClick(){
         val builder = AlertDialog.Builder(this)
-        val datePicker = DatePicker(applicationContext)
+        val datePicker = DatePicker(this)
         builder.setView(datePicker)
         builder.setTitle(R.string.global_birthday_dialog)
         builder.setPositiveButton(R.string.global_ok, { _, _ -> // Parameters not in use

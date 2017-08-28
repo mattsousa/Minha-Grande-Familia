@@ -124,6 +124,25 @@ public class PersonDAO {
         return people;
     }
 
+    public static void alterPersonById(int id, Person newTuple){
+        DAO dao = Singleton.getDao(Singleton.getContext());
+        Person relative = PersonDAO.getPersonByID(id);
+        if(relative != null){
+            ContentValues contentValues = new ContentValues();
+            //{"id","sex","name","birthday", "email", "isUser"};
+            contentValues.put(coluns[1],String.valueOf(newTuple.getSex()));
+            contentValues.put(coluns[2],newTuple.getName());
+            contentValues.put(coluns[3],newTuple.getBirthday());
+            contentValues.put(coluns[4],newTuple.getEmail());
+            contentValues.put(coluns[5],relative instanceof User);
+
+            int erro = dao.getWritableDatabase().update(DAO.TABLES[0],
+                    contentValues,
+                    coluns[0]+"="+id,
+                    null);
+        }
+    }
+
     public static boolean isFirstUse(){
         DAO dao = Singleton.getDao(Singleton.getContext());
         Cursor cursor = dao.getReadableDatabase().

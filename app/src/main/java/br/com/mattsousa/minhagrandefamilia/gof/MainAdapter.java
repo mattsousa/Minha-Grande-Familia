@@ -39,8 +39,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         View v = LayoutInflater.from(parent.getContext()).
                 inflate(R.layout.recycler_global_relative, parent, false);
 
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     @Override
@@ -59,10 +58,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 if(activity instanceof TreeActivity){
-                    Intent it = new Intent(Singleton.getContext(), NewRelativeActivity.class);
+                    Intent it = new Intent(activity.getApplicationContext(), NewRelativeActivity.class);
                     Gson gson = new Gson();
                     it.putExtra("relative",gson.toJson(relatives.get(i)));
-                    Singleton.getContext().startActivity(it);
+                    it.putExtra("newUser",false);
+                    activity.startActivity(it);
                 }
                 else
                     createDialog(view, relatives.get(i));
@@ -103,19 +103,21 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         btnRemove.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(Singleton.getContext(), MainActivity.class);
+                Intent it = new Intent(activity.getApplicationContext(), MainActivity.class);
                 alertDialog.dismiss();
                 RelativeDAO.removeById(relative.getId());
-                Singleton.getContext().startActivity(it);
+                activity.startActivity(it);
             }
         });
         btnEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent it = new Intent(Singleton.getContext(), NewRelativeActivity.class);
+                Intent it = new Intent(activity.getApplicationContext(), NewRelativeActivity.class);
                 Gson gson = new Gson();
                 it.putExtra("relative",gson.toJson(relative));
-                Singleton.getContext().startActivity(it);
+                it.putExtra("newUser",false);
+                alertDialog.dismiss();
+                activity.startActivity(it);
             }
         });
     }

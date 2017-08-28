@@ -53,13 +53,13 @@ class TreeActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun createDialog(po:View?){
         val builder = AlertDialog.Builder(this)
-        val recycler = RecyclerView(applicationContext)
+        val recycler = RecyclerView(this)
         val button = po as Button
 
         val relatives = RelativeDAO.getRelativesByKinship(getKinship(button))
 
         recycler.adapter = MainAdapter(relatives, this)
-        recycler.layoutManager = LinearLayoutManager(applicationContext)
+        recycler.layoutManager = LinearLayoutManager(this)
         builder.setTitle(button.text.toString())
         builder.setView(recycler)
         builder.show()

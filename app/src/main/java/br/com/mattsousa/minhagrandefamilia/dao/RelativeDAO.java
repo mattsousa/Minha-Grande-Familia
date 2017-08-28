@@ -67,41 +67,6 @@ public class RelativeDAO {
         return relative;
     }
 
-    public static ArrayList<Relative> getRelativesByKinship(Kinship kinship){
-        DAO dao = Singleton.getDao(Singleton.getContext());
-        String dql = "SELECT "+
-                coluns[0]+" , "+
-                coluns[1]+" , "+
-                coluns[2]+" , "+
-                coluns[3]+" , "+
-                coluns[4]+" , "+
-                coluns[5]+" , "+
-                coluns[6]+" "+
-                " FROM "+DAO.TABLES[1]+" "+
-                " WHERE "+coluns[6]+"="+kinship.getValue()+";";
-        Cursor cursor = dao.getReadableDatabase().rawQuery(dql,null);
-        Relative relative;
-        ArrayList<Relative> relatives = new ArrayList<>();
-        if(cursor.moveToFirst()){
-            do{
-                relative = (Relative)
-                        PersonDAO.getPersonByID(
-                                //Foreign key
-                                cursor.getInt(cursor.getColumnIndex(coluns[1])));
-                relative.setId(cursor.getInt(cursor.getColumnIndex(coluns[0])));
-                relative.setPersonId(cursor.getInt(cursor.getColumnIndex(coluns[1])));
-                relative.setPhoto(cursor.getBlob(cursor.getColumnIndex(coluns[2])));
-                relative.setMarried(cursor.getExtras().getBoolean(coluns[3]));
-                relative.setLivesUser(cursor.getExtras().getBoolean(coluns[4]));
-                relative.setPhone(cursor.getString(cursor.getColumnIndex(coluns[5])));
-                relative.setParentage(Kinship.getKinshipByValue(
-                        cursor.getInt(cursor.getColumnIndex(coluns[6]))));
-                relatives.add(relative);
-            }while(cursor.moveToNext());
-        }
-        cursor.close();
-        return relatives;
-    }
 
     public static ArrayList<Relative> getRelativesByKinship(ArrayList<Kinship> kinships){
         DAO dao = Singleton.getDao(Singleton.getContext());
@@ -180,6 +145,24 @@ public class RelativeDAO {
         }
         cursor.close();
         return relatives;
+    }
+
+    public static void alterUserById(int id, Relative newTuple){
+        DAO dao = Singleton.getDao(Singleton.getContext());
+        Relative relative = getRelativeByID(id);
+        if(relative != null){
+            PersonDAO.alterPersonById(newTuple.getPersonId(), newTuple);
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(coluns[2],newTuple.getPhoto());
+            contentValues.put(coluns[3],newTuple.isMarried());
+            contentValues.put(coluns[4],newTuple.isLivesUser());
+            contentValues.put(coluns[5],newTuple.getPhone());
+            contentValues.put(coluns[6],newTuple.getParentage().getValue());
+            dao.getWritableDatabase().update(DAO.TABLES[1],
+                    contentValues,
+                    coluns[0]+"="+id,
+                    null);
+        }
     }
 
     public static void removeById(int id){
