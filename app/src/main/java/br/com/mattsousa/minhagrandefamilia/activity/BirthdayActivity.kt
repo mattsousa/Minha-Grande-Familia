@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import br.com.mattsousa.minhagrandefamilia.R
-import br.com.mattsousa.minhagrandefamilia.TreeAdapter
+import br.com.mattsousa.minhagrandefamilia.gof.TreeAdapter
 import br.com.mattsousa.minhagrandefamilia.gof.Singleton
 import br.com.mattsousa.minhagrandefamilia.model.Relative
 import java.util.*

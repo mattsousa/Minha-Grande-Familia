@@ -1,4 +1,4 @@
-package br.com.mattsousa.minhagrandefamilia;
+package br.com.mattsousa.minhagrandefamilia.gof;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import br.com.mattsousa.minhagrandefamilia.R;
 import br.com.mattsousa.minhagrandefamilia.model.Relative;
 
 public class TreeAdapter extends RecyclerView.Adapter<TreeAdapter.ViewHolder>{

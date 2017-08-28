@@ -1,4 +1,4 @@
-package br.com.mattsousa.minhagrandefamilia;
+package br.com.mattsousa.minhagrandefamilia.gof;
 
 
 import android.app.Activity;
@@ -18,12 +18,11 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import br.com.mattsousa.minhagrandefamilia.R;
 import br.com.mattsousa.minhagrandefamilia.activity.MainActivity;
 import br.com.mattsousa.minhagrandefamilia.activity.NewRelativeActivity;
-import br.com.mattsousa.minhagrandefamilia.activity.NewUserActivity;
 import br.com.mattsousa.minhagrandefamilia.activity.TreeActivity;
 import br.com.mattsousa.minhagrandefamilia.dao.RelativeDAO;
-import br.com.mattsousa.minhagrandefamilia.gof.Singleton;
 import br.com.mattsousa.minhagrandefamilia.model.Relative;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {

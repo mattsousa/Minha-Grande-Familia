@@ -8,10 +8,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import br.com.mattsousa.minhagrandefamilia.MainAdapter
+import br.com.mattsousa.minhagrandefamilia.gof.MainAdapter
 import br.com.mattsousa.minhagrandefamilia.R
 import br.com.mattsousa.minhagrandefamilia.dao.RelativeDAO
-import br.com.mattsousa.minhagrandefamilia.gof.Singleton
 import br.com.mattsousa.minhagrandefamilia.model.Kinship
 
 class TreeActivity : AppCompatActivity(), View.OnClickListener {

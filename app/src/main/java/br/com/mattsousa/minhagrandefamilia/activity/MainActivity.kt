@@ -8,16 +8,14 @@ import android.support.v7.widget.CardView
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import br.com.mattsousa.minhagrandefamilia.MainAdapter
+import br.com.mattsousa.minhagrandefamilia.gof.MainAdapter
 import br.com.mattsousa.minhagrandefamilia.R
 import br.com.mattsousa.minhagrandefamilia.dao.RelativeDAO
 import br.com.mattsousa.minhagrandefamilia.gof.Singleton
 import br.com.mattsousa.minhagrandefamilia.model.Relative
-import br.com.mattsousa.minhagrandefamilia.model.User
 
 class MainActivity : AppCompatActivity() {
     private var cdvwAdd : CardView? = null
