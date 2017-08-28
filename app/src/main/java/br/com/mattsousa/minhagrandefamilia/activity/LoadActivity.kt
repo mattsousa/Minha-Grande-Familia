@@ -10,6 +10,7 @@ import android.support.v4.app.ActivityCompat
 import android.support.v4.content.ContextCompat
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import br.com.mattsousa.minhagrandefamilia.R
 import br.com.mattsousa.minhagrandefamilia.dao.PersonDAO
 import br.com.mattsousa.minhagrandefamilia.dao.RelativeDAO
@@ -38,6 +39,8 @@ class LoadActivity : AppCompatActivity() {
                     else ->Manifest.permission.READ_EXTERNAL_STORAGE
                 }})
                 ActivityCompat.requestPermissions(this, permissions, 1)
+            }else{
+                getFile()
             }
         })
     }
@@ -50,28 +53,39 @@ class LoadActivity : AppCompatActivity() {
                 if (grantResults.isNotEmpty().and(grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED)) {
                 }
+                else{
+                    finish()
+                }
                 if (grantResults.isNotEmpty().and(grantResults[1] ==
                         PackageManager.PERMISSION_GRANTED)) {
-                    val file = File(Environment.getExternalStorageDirectory(), "export.mgf")
-                    val gson = Gson()
-                    var gsonString = StringBuilder()
-
-                    for(buffer in file.readLines()){
-                        gsonString.append(buffer)
-                    }
-
-                    val user = gson.fromJson(gsonString.toString(), User::class.java) as User
-
-                    PersonDAO.insert(user, true)
-                    for(item in user.relatives){
-                        RelativeDAO.insert(item)
-                    }
-
-                    Singleton.setUser(user)
-
-                    startActivity(Intent(applicationContext, MainActivity::class.java))
+                    getFile()
+                }
+                else{
+                    finish()
                 }
             }
         }
+    }
+
+    private fun getFile(){
+        val file = File(Environment.getExternalStorageDirectory(), "export.mgf")
+        val gson = Gson()
+        var gsonString = StringBuilder()
+
+        for(buffer in file.readLines()){
+            gsonString.append(buffer)
+        }
+
+        val user = gson.fromJson(gsonString.toString(), User::class.java) as User
+
+        PersonDAO.insert(user, true)
+        for(item in user.relatives){
+            RelativeDAO.insert(item)
+        }
+
+        Singleton.setUser(user)
+
+        startActivity(Intent(applicationContext, MainActivity::class.java))
+        finish()
     }
 }

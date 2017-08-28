@@ -58,7 +58,7 @@ class TreeActivity : AppCompatActivity(), View.OnClickListener {
 
         val relatives = RelativeDAO.getRelativesByKinship(getKinship(button))
 
-        recycler.adapter = MainAdapter(relatives, this)
+        recycler.adapter = MainAdapter(relatives, this, false)
         recycler.layoutManager = LinearLayoutManager(this)
         builder.setTitle(button.text.toString())
         builder.setView(recycler)

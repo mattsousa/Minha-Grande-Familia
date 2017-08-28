@@ -37,6 +37,18 @@ class ExportActivity : AppCompatActivity() {
         btnExport = findViewById(R.id.export_btn_export) as Button
 
         btnExport!!.setOnClickListener({
+            if(ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED){
+                val array : Array<String> = Array(2, {i ->
+                    when(i){
+                        0->Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        else -> Manifest.permission.READ_EXTERNAL_STORAGE
+                    }
+                } )
+                ActivityCompat.requestPermissions(this, array, PERMISSION)
+            }else{
+                getFile()
+            }
             if(!file.exists()){
                 if(ContextCompat.checkSelfPermission(this,
                         Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED){
@@ -59,17 +71,25 @@ class ExportActivity : AppCompatActivity() {
             PERMISSION->{
                 if (grantResults.isNotEmpty().and(grantResults[0] ==
                         PackageManager.PERMISSION_GRANTED)){
-                    file.createNewFile()
-                    val writer = FileWriter(file)
-                    writer.write(string)
-                    writer.flush()
-                    writer.close()
-                    if(file.exists())
-                        Toast.makeText(application, R.string.export_success,Toast.LENGTH_SHORT).show()
-                    else
-                        Toast.makeText(application, R.string.export_not_success,Toast.LENGTH_SHORT).show()
+                    getFile()
+                }
+                else{
+                    finish()
                 }
             }
         }
+    }
+    private fun getFile(){
+        file.createNewFile()
+        val writer = FileWriter(file)
+        writer.write(string)
+        writer.flush()
+        writer.close()
+        if(file.exists())
+            Toast.makeText(application, R.string.export_success,
+                    Toast.LENGTH_SHORT).show()
+        else
+            Toast.makeText(application, R.string.export_not_success,
+                    Toast.LENGTH_SHORT).show()
     }
 }

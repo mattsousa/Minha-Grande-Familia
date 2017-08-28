@@ -14,9 +14,9 @@
     <string name="nrelatives_save">Save relative</string>
     <string name="nrelatives_photo_desc">Relative Photo</string>
     <string name="nrelatives_phone">Phone</string>
-    <string name="nrelatives_number_phone">(33) 3118 5163</string>
-    <string name="nrelatives_email">Email</string>
-    <string name="nrelatives_email_ex">Ex: foo@bar.com</string>
+    <string name="nrelatives_number_phone" translatable="false">(33) 3118 5163</string>
+    <string name="nrelatives_email" translatable="false">Email</string>
+    <string name="nrelatives_email_ex" translatable="false">Ex: foo@bar.com</string>
     <string name="nrelatives_lives_u">Lives with you?</string>
     <string name="nrelatives_yes">Yes</string>
     <string name="nrelatives_no">No</string>
@@ -27,15 +27,15 @@
     <string name="main_locate_birthday">Look in right top menu</string>
 
 
-    <string name="main_relative_name_ex">Mr mxyzptlk</string>
+    <string name="main_relative_name_ex" translatable="false">Mr mxyzptlk</string>
     <string name="main_relative_parentage_ex">Uncle</string>
-    <string name="main_relative_birthday_ex">Monday, August 26, 2017</string>
+    <string name="main_relative_birthday_ex" translatable="false">Monday, August 26, 2017</string>
     <string name="main_relative_remove">Remove relative</string>
     <string name="main_relative_edit">Edit Relative</string>
 
 
-    <string name="load_json_paste">{ }</string>
-    <string name="load_paste_hint">Paste the content on your \'.mgf\' file on root directory</string>
+    <string name="load_json_paste" translatable="false">{ }</string>
+    <string name="load_paste_hint">Paste your \'.mgf\' file on root directory</string>
     <string name="load_apply">Apply</string>
     <string name="birthday_birthdays">Birthdays</string>
     <string name="export_hint">The file will be generated on root directory</string>
@@ -49,7 +49,7 @@
     <string name="nuser_male">Male</string>
     <string name="nuser_female">Female</string>
     <string name="nuser_birthday">Select your birthday</string>
-    <string name="nuser_email_ex">Ex:foo@bar.com</string>
+    <string name="nuser_email_ex" translatable="false">Ex:foo@bar.com</string>
     <string name="nuser_email_confirm">Confirm your email here</string>
     <string name="nuser_wellcome">Wellcome</string>
     <string name="nuser_empty_name">Please, type your name</string>
@@ -73,11 +73,11 @@
     <string name="global_kinship_grandmother">Grand Mother</string>
     <string name="global_kinship_grandson">Grand Son</string>
     <string name="global_kinship_grandaughter">Grand Daughter</string>
-    <string name="global_ok">OK</string>
+    <string name="global_ok" translatable="false">OK</string>
     <string name="global_cancel">Cancel</string>
     <string name="global_birthday_dialog">Choose your birthday</string>
     <string name="nrelatives_empty_fields">Fill up your informations</string>
-    <string name="login_create">Create new Data</string>
+    <string name="login_create">Create new Family</string>
     <string name="login_recover">Recover data</string>
     <string name="global_relation_name">Relation Name</string>
     <string name="global_kinship_kind">Kinship kind</string>
@@ -94,7 +94,7 @@
     <string name="tree_me_click">I think you know all about yourself :D</string>
     <string name="main_menu_birthdays">Birthdays</string>
     <string name="about_version">Version:</string>
-    <string name="about_version_name">Baby</string>
+    <string name="about_version_name" translatable="false">Baby</string>
 
     <string-array name="nrelative_kinship_spn">
         <item>@string/global_kinship_son</item>

@@ -28,10 +28,18 @@ import br.com.mattsousa.minhagrandefamilia.model.Relative;
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private ArrayList<Relative> relatives;
     private Activity activity;
+    private boolean mainActivity;
 
     public MainAdapter(ArrayList<Relative> relatives, Activity activity) {
         this.relatives = relatives;
         this.activity = activity;
+        mainActivity = true;
+    }
+
+    public MainAdapter(ArrayList<Relative> relatives, Activity activity, boolean mainActivity) {
+        this.relatives = relatives;
+        this.activity = activity;
+        this.mainActivity = mainActivity;
     }
 
     @Override
@@ -57,15 +65,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(activity instanceof TreeActivity){
-                    Intent it = new Intent(activity.getApplicationContext(), NewRelativeActivity.class);
-                    Gson gson = new Gson();
-                    it.putExtra("relative",gson.toJson(relatives.get(i)));
-                    it.putExtra("newUser",false);
-                    activity.startActivity(it);
-                }
-                else
+                if(mainActivity){
                     createDialog(view, relatives.get(i));
+                }
             }
         });
 
