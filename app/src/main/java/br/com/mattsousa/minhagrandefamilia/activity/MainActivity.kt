@@ -2,28 +2,29 @@ package br.com.mattsousa.minhagrandefamilia.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.CardView
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
+import br.com.mattsousa.minhagrandefamilia.MainAdapter
 import br.com.mattsousa.minhagrandefamilia.R
-import br.com.mattsousa.minhagrandefamilia.dao.PersonDAO
 import br.com.mattsousa.minhagrandefamilia.dao.RelativeDAO
 import br.com.mattsousa.minhagrandefamilia.gof.Singleton
 import br.com.mattsousa.minhagrandefamilia.model.Relative
 import br.com.mattsousa.minhagrandefamilia.model.User
 
 class MainActivity : AppCompatActivity() {
-    var cdvwAdd : CardView? = null
-    var cdvwTree : CardView? = null
-    var rcvwRelatives : RecyclerView? = null
+    private var cdvwAdd : CardView? = null
+    private var cdvwTree : CardView? = null
+    private var rcvwRelatives : RecyclerView? = null
 
-    var listRelatives : ArrayList<Relative>? = null
+    private var listRelatives : ArrayList<Relative>? = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,22 +33,28 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         globalAssignments()
 
+
         cdvwAdd!!.setOnClickListener({addClick()})
         cdvwTree!!.setOnClickListener({treeClick()})
 
-        if (PersonDAO.nTuples() <= 1){
-            cdvwTree!!.visibility = View.GONE
-        }else{
-            listRelatives = RelativeDAO.getRelatives(applicationContext)
-            Singleton.getUser().relatives = listRelatives
-        }
+        rcvwRelatives!!.setHasFixedSize(true)
 
+        rcvwRelatives!!.layoutManager = LinearLayoutManager(this)
+
+        Snackbar.make(findViewById(R.id.main_ctly_layout),
+                R.string.main_remind_birthday, Snackbar.LENGTH_SHORT)
+                .show()
     }
 
     override fun onResume() {
         super.onResume()
-        listRelatives = RelativeDAO.getRelatives(applicationContext)
-        Singleton.getUser().relatives = listRelatives
+        if (RelativeDAO.nTuples() == 0){
+            cdvwTree!!.visibility = View.GONE
+        }
+        else{
+            cdvwTree!!.visibility = View.VISIBLE
+            updateList()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -64,8 +71,18 @@ class MainActivity : AppCompatActivity() {
         val id = item.itemId
 
         return when (id) {
-            R.id.action_about -> true
-            R.id.action_export -> true
+            R.id.action_about -> {
+                startActivity(Intent(this, AboutActivity::class.java))
+                true
+            }
+            R.id.action_birthday -> {
+                startActivity(Intent(this, BirthdayActivity::class.java))
+                true
+            }
+            R.id.action_export -> {
+                startActivity(Intent(this, ExportActivity::class.java))
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
 
@@ -85,5 +102,12 @@ class MainActivity : AppCompatActivity() {
     private fun treeClick(){
         val intent = Intent(applicationContext, TreeActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun updateList(){
+        listRelatives = RelativeDAO.getRelatives()
+        Singleton.getUser().relatives = listRelatives
+        rcvwRelatives!!.adapter = MainAdapter(listRelatives, this)
+        rcvwRelatives!!.adapter.notifyDataSetChanged()
     }
 }

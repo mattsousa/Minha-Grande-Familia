@@ -53,6 +53,7 @@ public class Singleton {
         Singleton.user = user;
     }
 
+
     public static Context getContext() {
         return context;
     }

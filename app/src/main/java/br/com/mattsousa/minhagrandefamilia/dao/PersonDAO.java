@@ -16,8 +16,8 @@ import br.com.mattsousa.minhagrandefamilia.model.User;
 public class PersonDAO {
     private static final String coluns[] = {"id","sex","name","birthday", "email", "isUser"};
 
-    public static long insert(Context context, Person person, boolean isUser){
-        DAO dao = Singleton.getDao(context);
+    public static long insert( Person person, boolean isUser){
+        DAO dao = Singleton.getDao(Singleton.getContext());
         ContentValues values = new ContentValues();
         int i = 1;
         values.put(coluns[i], String.valueOf(person.getSex()));
@@ -35,8 +35,8 @@ public class PersonDAO {
         return dao.getWritableDatabase().insert(DAO.TABLES[0],null,values);
     }
 
-    public static Person getPersonByID(Context context,int id){
-        DAO dao = Singleton.getDao(context);
+    public static Person getPersonByID(int id){
+        DAO dao = Singleton.getDao(Singleton.getContext());
         String dql = "SELECT "+
                 coluns[0]+" , "+
                 coluns[1]+" , "+
@@ -79,8 +79,8 @@ public class PersonDAO {
         return person;
     }
 
-    public static ArrayList<Person> getPeople(Context context){
-        DAO dao = Singleton.getDao(context);
+    public static ArrayList<Person> getPeople(){
+        DAO dao = Singleton.getDao(Singleton.getContext());
         String dql = "SELECT "+
                 coluns[0]+" , "+
                 coluns[1]+" , "+
@@ -124,15 +124,11 @@ public class PersonDAO {
         return people;
     }
 
-    public static boolean isFirstUse(Context context){
-        DAO dao = Singleton.getDao(context);
-        return dao.getReadableDatabase().
-                rawQuery("SELECT * FROM "+DAO.TABLES[0]+";",null).getCount() == 0;
-    }
-
-    public static int nTuples(){
+    public static boolean isFirstUse(){
         DAO dao = Singleton.getDao(Singleton.getContext());
-        return dao.getReadableDatabase().
-                rawQuery("SELECT * FROM "+DAO.TABLES[0]+";",null).getCount();
+        Cursor cursor = dao.getReadableDatabase().
+                rawQuery("SELECT * FROM "+DAO.TABLES[0]+";",null);
+        cursor.moveToFirst();
+        return cursor.getCount() == 0;
     }
 }

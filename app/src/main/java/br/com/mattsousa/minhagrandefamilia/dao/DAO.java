@@ -37,7 +37,8 @@ public class DAO extends SQLiteOpenHelper{
         builder.append("photo BLOB ,");
         builder.append("is_married BOOLEAN ,");
         builder.append("lives_user BOOLEAN ,");
-        builder.append("phone VARCHAR ");
+        builder.append("phone VARCHAR ,");
+        builder.append("kinship INTEGER ");
         builder.append(");");
 
         sqLiteDatabase.execSQL(builder.toString());

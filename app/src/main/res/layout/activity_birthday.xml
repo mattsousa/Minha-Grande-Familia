@@ -7,7 +7,7 @@
     tools:context="br.com.mattsousa.minhagrandefamilia.activity.BirthdayActivity">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/birthday_txw_birthdays"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -25,5 +25,5 @@
         android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/birthday_txw_birthdays" />
 </android.support.constraint.ConstraintLayout>

@@ -28,10 +28,10 @@ class SplashActivity : AppCompatActivity() {
 
     private fun startNewActivity(){
         val intent : Intent =
-                if(PersonDAO.isFirstUse(applicationContext)){
+                if(PersonDAO.isFirstUse()){
                     Intent(applicationContext, LoginActivity::class.java)
                 } else {
-                    Singleton.setUser(PersonDAO.getPersonByID(applicationContext, 1) as User)
+                    Singleton.setUser(PersonDAO.getPersonByID(1) as User)
                     Intent(applicationContext, MainActivity::class.java)
         }
         startActivity(intent)

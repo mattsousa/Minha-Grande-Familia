@@ -4,6 +4,8 @@ import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -15,7 +17,10 @@ import br.com.mattsousa.minhagrandefamilia.dao.RelativeDAO
 import br.com.mattsousa.minhagrandefamilia.model.Kinship
 import br.com.mattsousa.minhagrandefamilia.model.Person
 import br.com.mattsousa.minhagrandefamilia.model.Relative
+import com.google.gson.Gson
+import java.io.ByteArrayOutputStream
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
@@ -31,7 +36,9 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     private var relative : Relative? = null
     private var sex : Char? = null
-
+    private var photo : ByteArray? = null
+    private var date : Date = Date()
+    private var strRelative : String? = null
     private val REQUEST_IMAGE_CAPTURE = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +47,12 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         globalAssignments()
         spnInsertValues()
 
+        strRelative =  intent.getStringExtra("relative")
+        if (strRelative != null) {
+            val gson = Gson()
+            relative = gson.fromJson(strRelative, Relative::class.java)
+            updateUserInfo()
+        }
         edtName!!.letterSpacing = .2f
 
         spnParentage!!.onItemSelectedListener = this
@@ -51,6 +64,30 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         btnXInfo!!.setOnClickListener({xinfoClick()})
 
         imvwPhoto!!.setOnClickListener({imageClick()})
+    }
+
+    private fun updateUserInfo() {
+        val bitmap = BitmapFactory.decodeByteArray(relative!!.photo, 0,
+                relative!!.photo.size)
+        imvwPhoto!!.setImageBitmap(bitmap)
+        edtName!!.setText(relative!!.name)
+        btnBirthday!!.text = relative!!.prettyDate
+        date = relative!!.birthdayDate
+        sex = relative!!.sex
+        setSpnValue()
+    }
+
+    private fun setSpnValue() {
+        val adapter = spnParentage!!.adapter
+        var position = 0
+        var aux : String?
+        while (position < adapter.count){
+            aux = adapter.getItem(position) as String
+            if( aux == relative!!.parentage.relationName){
+                spnParentage!!.setSelection(position)
+            }
+            position++
+        }
     }
 
     private fun globalAssignments(){
@@ -76,8 +113,12 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             }
         }else{
             relative = Relative(sex!!, edtName!!.text.toString(),
-                    btnBirthday!!.text.toString(),kinship)
-            RelativeDAO.insert(applicationContext, relative)
+                    SimpleDateFormat(Relative.DATE_FORMAT).format(date),kinship)
+            relative!!.photo = photo
+            if(relative != null){
+                RelativeDAO.removeById(relative!!.id)
+            }
+            RelativeDAO.insert(relative)
             onBackPressed()
         }
     }
@@ -141,6 +182,7 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
                 kinship = Kinship.SISTER
                 sex = Person.SEX_FEMALE
             }
+
         }
     }
 
@@ -150,15 +192,16 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == REQUEST_IMAGE_CAPTURE && resultCode == Activity.RESULT_OK){
-            val extra = data!!.extras
-            val image = extra.get("data") as Bitmap
-            imvwPhoto!!.setImageBitmap(image)
+            savePhoto(data)
         }
     }
 
     private fun birthClick(){
         val builder = AlertDialog.Builder(this)
         val datePicker = DatePicker(applicationContext)
+        if(date != null){
+            datePicker.updateDate(date.year, date.month, date.day)
+        }
         builder.setView(datePicker)
         builder.setTitle(R.string.global_birthday_dialog)
         builder.setPositiveButton(R.string.global_ok, { _, _ -> // Parameters not in use
@@ -166,6 +209,7 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
             cal.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
             btnBirthday!!.text = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault())
                     .format(cal.time)
+            date = cal.time
         })
         builder.setNegativeButton(R.string.global_cancel, {_,_->})
         builder.show()
@@ -181,7 +225,13 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         val swcMarried = view.findViewById<Switch>(R.id.nrelatives_swc_married)
         val swcLives = view.findViewById<Switch>(R.id.nrelatives_swc_lives)
         builder.setView(view)
-                builder.setTitle(R.string.nrelatives_xinfo_ex)
+        if(relative != null){
+            edtPhone.setText(relative!!.phone)
+            edtEmail.setText(relative!!.email)
+            swcLives.isChecked = relative!!.isLivesUser
+            swcMarried.isChecked = relative!!.isMarried
+        }
+        builder.setTitle(R.string.nrelatives_xinfo_ex)
         builder.setPositiveButton(R.string.global_ok,
                 { _: DialogInterface, _: Int ->
                     if(edtEmail.text.isBlank().or(edtPhone.text.isBlank())){
@@ -207,5 +257,14 @@ class NewRelativeActivity : AppCompatActivity(), AdapterView.OnItemSelectedListe
         if(takePicture.resolveActivity(packageManager) != null){
             startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE)
         }
+    }
+
+    private fun savePhoto(data:Intent?){
+        val extra = data!!.extras
+        val image = extra.get("data") as Bitmap
+        val byteStream = ByteArrayOutputStream()
+        image.compress(Bitmap.CompressFormat.PNG, 100, byteStream)
+        imvwPhoto!!.setImageBitmap(image)
+        photo = byteStream.toByteArray()
     }
 }

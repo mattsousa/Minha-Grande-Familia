@@ -14,8 +14,10 @@ import br.com.mattsousa.minhagrandefamilia.R
 import br.com.mattsousa.minhagrandefamilia.dao.PersonDAO
 import br.com.mattsousa.minhagrandefamilia.gof.Singleton
 import br.com.mattsousa.minhagrandefamilia.model.Person
+import br.com.mattsousa.minhagrandefamilia.model.Relative
 import br.com.mattsousa.minhagrandefamilia.model.User
 import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 class NewUserActivity : AppCompatActivity() {
@@ -31,6 +33,7 @@ class NewUserActivity : AppCompatActivity() {
     private var edtEmailOk : EditText? = null
 
     private var sex : Char = 'M'
+    private var date : Date = Date()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +44,7 @@ class NewUserActivity : AppCompatActivity() {
 
         fabNext!!.setOnClickListener({view ->  fabClick(view) })
 
+        edtName!!.letterSpacing = .2f
         edtEmail!!.letterSpacing = .2f
         edtEmailOk!!.letterSpacing = .2f
 
@@ -134,6 +138,7 @@ class NewUserActivity : AppCompatActivity() {
             cal.set(datePicker.year, datePicker.month, datePicker.dayOfMonth)
             btnBirth!!.text = DateFormat.getDateInstance(DateFormat.FULL, Locale.getDefault())
                     .format(cal.time)
+            date = cal.time
         })
         builder.setNegativeButton(R.string.global_cancel, {dialog, id ->})
         builder.show()
@@ -157,9 +162,10 @@ class NewUserActivity : AppCompatActivity() {
     }
 
     private fun saveUser(){
-        val user = User(sex, edtName!!.text.toString(),btnBirth!!.text.toString())
+        val user = User(sex, edtName!!.text.toString(),
+                SimpleDateFormat(Relative.DATE_FORMAT).format(date))
         Singleton.setUser(user)
-        PersonDAO.insert(applicationContext, user, true)
+        PersonDAO.insert(user, true)
     }
 
     private fun changeScreen(){

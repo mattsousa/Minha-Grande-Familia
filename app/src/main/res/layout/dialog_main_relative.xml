@@ -1,25 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp">
 
-    <TextView
-        android:id="@+id/main_txw_name"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/main_relative_name_ex" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/main_txw_parentage"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/main_relative_parentage_ex" />
+        <ImageView
+            android:id="@+id/main_imvw_photo"
+            android:layout_width="75dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/ic_menu_camera" />
 
-    <TextView
-        android:id="@+id/main_txw_birthday"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/main_relative_birthday_ex" />
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@+id/main_imvw_photo"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/main_txw_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/main_relative_name_ex"
+                android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="161dp" />
+
+            <TextView
+                android:id="@+id/main_txw_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_relative_birthday_ex"
+                tools:layout_editor_absoluteX="129dp"
+                tools:layout_editor_absoluteY="129dp" />
+
+            <TextView
+                android:id="@+id/main_txw_parentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/main_relative_parentage_ex"
+                tools:layout_editor_absoluteX="253dp"
+                tools:layout_editor_absoluteY="163dp" />
+        </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
 
     <Button
         android:id="@+id/main_btn_remove"

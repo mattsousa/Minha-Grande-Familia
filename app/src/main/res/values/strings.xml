@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Minha Grande Familia!</string>
-    <string name="main_add_relatives">Adicione familiares</string>
-    <string name="main_tree_gene">Arvore genealogica</string>
+    <string name="main_add_relatives">Add your relatives</string>
+    <string name="main_tree_gene">Family tree</string>
     <string name="main_menu_about">About</string>
     <string name="main_menu_export">Export</string>
     <string name="nrelative_name">Name</string>
@@ -22,16 +22,25 @@
     <string name="nrelatives_no">No</string>
     <string name="nrelatives_married">Is married?</string>
     <string name="nrelatives_no_choose">Select a parentage</string>
+    <string name="main_dialog_title">Informations about your relative</string>
+    <string name="main_remind_birthday">Do not forget to look in Birthdays\' page</string>
+    <string name="main_locate_birthday">Look in right top menu</string>
+
+
     <string name="main_relative_name_ex">Mr mxyzptlk</string>
-    <string name="main_relative_parentage_ex">He(She) is your uncle</string>
-    <string name="main_relative_birthday_ex">His birthday will be in 01.22, monday</string>
+    <string name="main_relative_parentage_ex">Uncle</string>
+    <string name="main_relative_birthday_ex">Monday, August 26, 2017</string>
     <string name="main_relative_remove">Remove relative</string>
     <string name="main_relative_edit">Edit Relative</string>
+
+
     <string name="load_json_paste">{ }</string>
-    <string name="load_paste_hint">Paste the content on your .fmly file here</string>
+    <string name="load_paste_hint">Paste the content on your \'.mgf\' file on root directory</string>
     <string name="load_apply">Apply</string>
     <string name="birthday_birthdays">Birthdays</string>
-    <string name="export_hint">The file will be generated on FamilyBig directory</string>
+    <string name="export_hint">The file will be generated on root directory</string>
+    <string name="export_success">File created successfully</string>
+    <string name="export_not_success">File could not be created</string>
     <string name="export_export">Export</string>
     <string name="nuser_name">Type your name</string>
     <string name="nuser_gender_birthday">Now, insert your gender and birthday</string>
@@ -70,6 +79,22 @@
     <string name="nrelatives_empty_fields">Fill up your informations</string>
     <string name="login_create">Create new Data</string>
     <string name="login_recover">Recover data</string>
+    <string name="global_relation_name">Relation Name</string>
+    <string name="global_kinship_kind">Kinship kind</string>
+    <string name="tree_grandparents">Grandparents</string>
+    <string name="tree_parents">Parents</string>
+    <string name="tree_uncle_aunt">Uncles and Aunts</string>
+    <string name="tree_brother">Brother</string>
+    <string name="tree_me">Me</string>
+    <string name="tree_sister">Sister</string>
+    <string name="tree_son">Son</string>
+    <string name="tree_daughter">Daughter</string>
+    <string name="tree_grandchildren">Grandchildren</string>
+
+    <string name="tree_me_click">I think you know all about yourself :D</string>
+    <string name="main_menu_birthdays">Birthdays</string>
+    <string name="about_version">Version:</string>
+    <string name="about_version_name">Baby</string>
 
     <string-array name="nrelative_kinship_spn">
         <item>@string/global_kinship_son</item>

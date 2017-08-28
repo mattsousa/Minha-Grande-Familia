@@ -49,4 +49,11 @@ public enum Kinship {
         return relationName;
     }
 
+    public static Kinship getKinshipByValue(int value){
+        for(Kinship item : values()){
+            if(item.value == value)
+                return item;
+        }
+        return null;
+    }
 }
