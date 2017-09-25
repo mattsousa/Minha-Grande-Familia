@@ -28,13 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.NewUserActivity" />
         <activity android:name=".activity.TreeActivity" />
         <activity android:name=".activity.NewRelativeActivity" />
-        <activity android:name=".activity.LoadActivity" />
         <activity android:name=".activity.AboutActivity" />
-        <activity android:name=".activity.ExportActivity" />
         <activity android:name=".activity.BirthdayActivity"/>
     </application>
 

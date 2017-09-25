@@ -15,7 +15,7 @@ public class Relative extends Person implements Comparable<Relative>{
     private boolean isMarried;
     private boolean livesUser;
     private String phone;
-    private int id, personId;
+    private int personId;
 
     public static String DATE_FORMAT = "dd/MM/yyyy";
 
@@ -26,7 +26,6 @@ public class Relative extends Person implements Comparable<Relative>{
         isMarried = false;
         livesUser = false;
         phone = "";
-        id = 0;
         personId = 0;
     }
 
@@ -72,14 +71,6 @@ public class Relative extends Person implements Comparable<Relative>{
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public int getPersonId() {

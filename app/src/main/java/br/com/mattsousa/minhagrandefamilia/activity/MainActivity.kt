@@ -16,7 +16,9 @@ import br.com.mattsousa.minhagrandefamilia.R
 import br.com.mattsousa.minhagrandefamilia.dao.RelativeDAO
 import br.com.mattsousa.minhagrandefamilia.gof.Singleton
 import br.com.mattsousa.minhagrandefamilia.model.Relative
-
+// TODO: 25/09/17 Implements a schedule to notify the user about the birthday
+// TODO: 25/09/17 Implements call other features (call by phone, send text via msg app)
+// TODO: 25/09/17 Improve app's design
 class MainActivity : AppCompatActivity() {
     private var cdvwAdd : CardView? = null
     private var cdvwTree : CardView? = null
@@ -75,10 +77,6 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.action_birthday -> {
                 startActivity(Intent(this, BirthdayActivity::class.java))
-                true
-            }
-            R.id.action_export -> {
-                startActivity(Intent(this, ExportActivity::class.java))
                 true
             }
             else -> super.onOptionsItemSelected(item)

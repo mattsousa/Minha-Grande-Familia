@@ -2,9 +2,7 @@ package br.com.mattsousa.minhagrandefamilia.dao;
 
 
 import android.content.ContentValues;
-import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -19,7 +17,9 @@ public class PersonDAO {
     public static long insert( Person person, boolean isUser){
         DAO dao = Singleton.getDao(Singleton.getContext());
         ContentValues values = new ContentValues();
-        int i = 1;
+        int i = 0;
+        values.put(coluns[i], person.getId());
+        i+=1;
         values.put(coluns[i], String.valueOf(person.getSex()));
         i+=1;
         values.put(coluns[i], person.getName());
@@ -129,7 +129,6 @@ public class PersonDAO {
         Person relative = PersonDAO.getPersonByID(id);
         if(relative != null){
             ContentValues contentValues = new ContentValues();
-            //{"id","sex","name","birthday", "email", "isUser"};
             contentValues.put(coluns[1],String.valueOf(newTuple.getSex()));
             contentValues.put(coluns[2],newTuple.getName());
             contentValues.put(coluns[3],newTuple.getBirthday());
@@ -148,6 +147,7 @@ public class PersonDAO {
         Cursor cursor = dao.getReadableDatabase().
                 rawQuery("SELECT * FROM "+DAO.TABLES[0]+";",null);
         cursor.moveToFirst();
+        cursor.close();
         return cursor.getCount() == 0;
     }
 }

@@ -9,6 +9,7 @@ public abstract class Person {
     protected String name;
     protected String birthday;
     protected String email;
+    protected int id;
 
     public Person(char sex, String name, String birthday) {
         this.sex = sex;
@@ -51,5 +52,13 @@ public abstract class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

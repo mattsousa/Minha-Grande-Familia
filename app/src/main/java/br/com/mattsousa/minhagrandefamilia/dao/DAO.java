@@ -20,10 +20,10 @@ public class DAO extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         StringBuilder builder = new StringBuilder();
         builder.append("CREATE TABLE "+ TABLES[0] +" (");
-        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT,");
+        builder.append("id INTEGER PRIMARY KEY ,");
         builder.append("sex CHARACTER(1) NOT NULL,");
         builder.append("name VARCHAR NOT NULL,");
-        builder.append("birthday VARCHAR NOT NULL,");
+        builder.append("birthday CHARACTER(10) NOT NULL,");
         builder.append("email VARCHAR NOT NULL,");
         builder.append("isUser CHARACTER");
         builder.append(");");
@@ -32,22 +32,23 @@ public class DAO extends SQLiteOpenHelper{
         builder.delete(0, builder.length());
 
         builder.append("CREATE TABLE "+ TABLES[1] +" (");
-        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT,");
-        builder.append("id_person INTEGER NOT NULL,");
-        builder.append("photo BLOB ,");
-        builder.append("is_married BOOLEAN ,");
-        builder.append("lives_user BOOLEAN ,");
+        builder.append("id INT PRIMARY KEY,");
+        builder.append("id_person INT NOT NULL CONSTRAINT ");
+        builder.append("tbRelative_tbPerson_id_fk REFERENCES "+TABLES[0]+"(id),");
+        builder.append("photo BLOB NOT NULL,");
+        builder.append("is_married INT ,");
+        builder.append("lives_user INT ,");
         builder.append("phone VARCHAR ,");
-        builder.append("kinship INTEGER ");
+        builder.append("kinship INT NOT NULL");
         builder.append(");");
 
         sqLiteDatabase.execSQL(builder.toString());
         builder.delete(0, builder.length());
 
         builder.append("CREATE TABLE "+ TABLES[2] +" (");
-        builder.append("id INTEGER PRIMARY KEY AUTOINCREMENT,");
+        builder.append("id INT PRIMARY KEY ,");
         builder.append("name VARCHAR NOT NULL,");
-        builder.append("parentage INTEGER NOT NULL");
+        builder.append("parentage INT NOT NULL");
         builder.append(");");
 
         sqLiteDatabase.execSQL(builder.toString());
